@@ -10,7 +10,7 @@ public class BaseShape {
 
     // TODO Initialiser les points.
     public BaseShape() {
-        // ...
+
     }
 
     // TODO prendre une liste de points et creer une nouvelle forme.

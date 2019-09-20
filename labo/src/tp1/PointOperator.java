@@ -77,21 +77,39 @@ public final class PointOperator {
     public static Point2d getMaxCoord(Collection<Point2d> coords) {
         Iterator<Point2d> itr = coords.iterator();
         Point2d pointMax = new Point2d(0.0, 0.0);
-        double somme = 0.0;
-        double max = 0.0;
+        double xmax = 0.0;
+        double ymax = 0.0;
+        boolean premiereFois = true;
 
         while(itr.hasNext()) {
             Point2d point = itr.next();
-            somme = point.X() + point.Y();
-            if (somme > max)
-                pointMax = point;
+            if (point.X() > xmax || premiereFois)
+                xmax = point.X();
+            if (point.Y() > ymax || premiereFois)
+                ymax = point.Y();
+            premiereFois = false;
         }
 
-        return pointMax;
+        return new Point2d(xmax, ymax);
     }
 
     // TODO retourne la coordonnee avec les plus petites valeurs en X et en Y.
     public static Point2d getMinCoord(Collection<Point2d> coords) {
-        return null;
+        Iterator<Point2d> itr = coords.iterator();
+        Point2d pointMax = new Point2d(0.0, 0.0);
+        double xmin = 0.0;
+        double ymin = 0.0;
+        boolean premiereFois = true;
+
+        while(itr.hasNext()) {
+            Point2d point = itr.next();
+            if (point.X() < xmin || premiereFois)
+                xmin = point.X();
+            if (point.Y() < ymin || premiereFois)
+                ymin = point.Y();
+            premiereFois = false;
+        }
+
+        return new Point2d(xmin, ymin);
     }
 }
