@@ -9,22 +9,38 @@ public final class LetterFactory {
 
     // TODO
     public static BaseShape create_H() {
-        return null;
+        Double degrees90 = Math.toRadians(90);
+        Double spacing = stripeThickness * 2;
+        BaseShape mainStripe = new Rectangle(stripeThickness, maxHeight);
+        BaseShape leftStripe = mainStripe.translate(new Point2d(-spacing, 0.0));
+        BaseShape rightStripe = mainStripe.translate(new Point2d(spacing, 0.0));
+        BaseShape horizontalStripe = mainStripe.rotate(degrees90).translate(new Point2d(0.0, halfMaxHeight));
+        leftStripe.add(horizontalStripe);
+        leftStripe.add(rightStripe);
+
+        return leftStripe;
     }
 
     // TODO
     public static BaseShape create_e() {
-        return null;
+
+
+        return new Ellipse(maxWidth, maxHeight);
     }
 
     // TODO
     public static BaseShape create_l() {
-        return null;
+        BaseShape mainStripe = new Rectangle(stripeThickness, maxHeight);
+        BaseShape stripe = mainStripe.translate(new Point2d(0.0, 0.0));
+
+        return stripe;
     }
 
     // TODO
     public static BaseShape create_o() {
-        return null;
+        BaseShape mainO = new Ellipse(maxWidth, maxHeight);
+
+        return mainO;
     }
 
     // On vous donne la lettre W comme exemple.
@@ -44,11 +60,18 @@ public final class LetterFactory {
 
     // TODO
     public static BaseShape create_r() {
-        return null;
+
+        return new Ellipse(maxWidth, maxHeight);
     }
 
     // TODO
     public static BaseShape create_d() {
-        return null;
+        Double spacing = halfMaxWidth;
+        BaseShape mainStripe = new Rectangle(stripeThickness, maxHeight);
+        BaseShape stripe = mainStripe.translate(new Point2d(spacing, 0.0));
+        BaseShape circle = new Ellipse(maxWidth, maxWidth);
+        circle.add(stripe);
+
+        return circle;
     }
 }
