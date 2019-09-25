@@ -6,8 +6,8 @@ import java.util.Set;
 public class Ellipse extends BaseShape {
     // TODO creer une ellipse avec une largeur et une longueur.
     public Ellipse(Double widthRadius, Double heightRadius) {
-    /*   this.add(new Point2d(0.0,0.0));
-        this.add(new Point2d(widthRadius, heightRadius));*/
+       this.add(new Point2d(0.0,0.0));
+        this.add(new Point2d(widthRadius, heightRadius));
     }
 
     private Ellipse(Set<Point2d> coords) {
