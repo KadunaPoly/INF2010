@@ -14,9 +14,11 @@ public final class LetterFactory {
         BaseShape mainStripe = new Rectangle(stripeThickness, maxHeight);
         BaseShape leftStripe = mainStripe.translate(new Point2d(-spacing, 0.0));
         BaseShape rightStripe = mainStripe.translate(new Point2d(spacing, 0.0));
-        BaseShape horizontalStripe = mainStripe.rotate(degrees90).translate(new Point2d(0.0, halfMaxHeight));
-        leftStripe.add(horizontalStripe);
+        BaseShape middleStripe = new Rectangle(stripeThickness, halfMaxHeight);
+        BaseShape horizontalStripe = middleStripe.rotate(-degrees90).translate(new Point2d(-halfMaxWidth, halfMaxHeight));
         leftStripe.add(rightStripe);
+        leftStripe.add(horizontalStripe);
+
 
         return leftStripe;
     }
@@ -24,8 +26,16 @@ public final class LetterFactory {
     // TODO
     public static BaseShape create_e() {
 
+        Double degrees90 = Math.toRadians(90);
+        BaseShape circle = new Ellipse(maxWidth, maxWidth).translate(new Point2d(-halfMaxWidth,30.0));
+        BaseShape mainStripe = new Rectangle(stripeThickness, halfMaxHeight-5);
+        BaseShape horizontalStripe = mainStripe.rotate(-degrees90).translate(new Point2d(-halfMaxWidth, halfMaxHeight));
+        BaseShape HiddingStripe = mainStripe.rotate(-degrees90).translate(new Point2d((maxWidth/2)-halfMaxWidth,halfMaxHeight+stripeThickness));
+        circle.add(horizontalStripe);
+        circle.remove(HiddingStripe);
+        BaseShape lastCircle = circle.translate(new Point2d(0.0,60.0));//descendre le e
+        return lastCircle;
 
-        return new Ellipse(maxWidth, maxHeight);
     }
 
     // TODO
@@ -61,15 +71,24 @@ public final class LetterFactory {
     // TODO
     public static BaseShape create_r() {
 
-        return new Ellipse(maxWidth, maxHeight);
+        BaseShape mainStripe = new Rectangle(stripeThickness, maxHeight);
+        BaseShape mainCircle = new Circle(maxWidth);
+        BaseShape mainSquare = new Square(maxWidth);
+        BaseShape leftStripe = mainStripe.translate(new Point2d(-halfMaxWidth, 0.0));
+        BaseShape circle = mainCircle.translate(new Point2d(-halfMaxWidth,10.0));
+        BaseShape hiddingSquare = mainSquare.translate(new Point2d(-halfMaxWidth,halfMaxHeight/2));
+        circle.remove(hiddingSquare);
+        leftStripe.add(circle);
+        return leftStripe;
     }
 
     // TODO
     public static BaseShape create_d() {
         Double spacing = halfMaxWidth;
         BaseShape mainStripe = new Rectangle(stripeThickness, maxHeight);
-        BaseShape stripe = mainStripe.translate(new Point2d(spacing, 0.0));
-        BaseShape circle = new Ellipse(maxWidth, maxWidth);
+        BaseShape stripe = mainStripe.translate(new Point2d(maxWidth, 0.0));
+        BaseShape mainCircle = new Ellipse(maxWidth, halfMaxHeight);
+        BaseShape circle = mainCircle.translate (new Point2d(0.0,halfMaxHeight));
         circle.add(stripe);
 
         return circle;

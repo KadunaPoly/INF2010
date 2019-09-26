@@ -24,7 +24,7 @@ public class LetterTester {
             letterPlacer.placeNext('l');
             letterPlacer.placeNext('l');
             letterPlacer.placeNext('o');
-            letterPlacer.placeNextln('W');
+            letterPlacer.placeNext('W');
             letterPlacer.placeNext('o');
             letterPlacer.placeNext('r');
             letterPlacer.placeNext('l');

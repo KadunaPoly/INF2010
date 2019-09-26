@@ -1,23 +1,29 @@
 package tp1;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Rectangle extends BaseShape {
     // TODO creer un rectangle avec une largeur et une longueur.
     public Rectangle(Double width, Double height) {
-        this.add(new Point2d(0.0,0.0));
-        this.add(new Point2d(width,height));
-        this.add(new Point2d(width,0.0));
-        this.add(new Point2d(0.0,height));
+        super(new HashSet<Point2d>(Arrays.asList(new Point2d(0.0, 0.0))));
+        for(Double largeur=0.0; largeur<= width; largeur++) {
+            for (Double longueur=0.0; longueur<= height; longueur++) {
+                this.add(new Point2d(largeur, longueur));
+            }
+        }
     }
 
     // TODO creer un rectangle avec un point contenant la largeur et longueur.
     public Rectangle(Point2d dimensions) {
-        this.add(new Point2d(0.0,0.0));
-        this.add(new Point2d(dimensions.X(),dimensions.Y()));
-        this.add(new Point2d(dimensions.X(),0.0));
-        this.add(new Point2d(0.0,dimensions.Y()));
+        super(new HashSet<Point2d>(Arrays.asList(dimensions)));
+        for(double largeur=0; largeur< dimensions.X(); largeur++) {
+            for (double longueur=0; longueur<dimensions.Y(); longueur++) {
+                this.add(new Point2d(largeur, longueur));
+            }
+        }
     }
 
     private Rectangle(Set<Point2d> coords) {
