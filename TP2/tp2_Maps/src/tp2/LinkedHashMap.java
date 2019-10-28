@@ -88,26 +88,29 @@ public class LinkedHashMap<KeyType, DataType> {
         int index = this.getIndex(key);
         Node<KeyType, DataType> currentNode = map[index];
 
-        boolean done = false;
         while (currentNode.next != null && currentNode.key != key){
-               currentNode = currentNode.next;
-
-          if (currentNode.next == null){ Node<KeyType, DataType> newNode = new Node<KeyType, DataType>(key, value); }
-           else {currentNode.data = value; }
+            currentNode = currentNode.next;
+            if (currentNode.next == null){
+                Node<KeyType, DataType> newNode = new Node<KeyType, DataType>(key, value);
+                map[index] = node;
+                size++;
+                return null;
+            }
+           else {
+                currentNode.data = value;
+                map[index].data = value;
+                return oldValue;
+           }
         }
 
           return null;
         } /*
         if(oldValue == null) {
-            Node<KeyType, DataType> node = new Node<KeyType, DataType>(key, value);
-            map[index] = node;
-            size++;
-            return null;
+
         }
 
         else {
-            map[index].data = value;
-            return oldValue;
+
         }*/
 
 
